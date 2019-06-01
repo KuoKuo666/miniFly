@@ -29,7 +29,10 @@ cc.Class({
 
     createOneBullet (x, y) {
         let b = this.pool.get(this.pool);
-        if (!b) b = cc.instantiate(this.bullet);
+        if (!b) {
+        	this.pool.put(cc.instantiate(this.bullet));
+        	b = this.pool.get(this.pool);
+        }
         b.parent = this.node;
         b.x = x;
         b.y = y;
